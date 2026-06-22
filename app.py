@@ -4,6 +4,7 @@ import streamlit as st
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
+    # FIXME: the difficulty of the Normal and Hard ranges need to be switched
     if difficulty == "Normal":
         return 1, 100
     if difficulty == "Hard":
@@ -34,6 +35,7 @@ def check_guess(guess, secret):
         return "Win", "🎉 Correct!"
 
     try:
+        # FIXME: the logic here switches the hint for when the guess is higher/lower than the secret
         if guess > secret:
             return "Too High", "📈 Go HIGHER!"
         else:
@@ -92,6 +94,7 @@ st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
+# FIXME: Attempts should start at 0. This causes the game to end before all attempts are used
 if "attempts" not in st.session_state:
     st.session_state.attempts = 1
 
@@ -106,6 +109,7 @@ if "history" not in st.session_state:
 
 st.subheader("Make a guess")
 
+# FIXME: The instruction is hardcoded to 1 and 100. Needs to be fixed so it corresponds correctly to the difficulty ranges
 st.info(
     f"Guess a number between 1 and 100. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
@@ -131,6 +135,7 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
+# FIXME: Logic here breaks. the status is not reset and the secret is hardcoded to be range 1 to 100
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(1, 100)
@@ -155,6 +160,7 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
+        # FIXME: Logic here makes no sense in looking for an even attempt to change the secret to be a string
         if st.session_state.attempts % 2 == 0:
             secret = str(st.session_state.secret)
         else:
