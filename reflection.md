@@ -30,17 +30,22 @@ Document at least 3 bugs you found. Add rows as needed.
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+  - I used Claude to aid on this project
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
+  - The AI suggested to change the st.session_state.attempts to be initialized to 0 instead of 1. I brought up the big I witness when exploring the application that the game ends even with 1 attempt left. After this suggestion and test, players can play the guessing game up until they are out of attempts (attempts = 0).
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+  - I was having trouble running the pytests due to the tests being in a subdirectory and the modules are at the root. The AI suggested to import sys, and os then suggested to create a new file to put those imports and line to change a path. This was not best practice and I suggested to create an ** init **.py file instead, which I used. With this new init file, I was able to run the pytest successfully.
 
 ---
 
 ## 3. Debugging and testing your fixes
 
 - How did you decide whether a bug was really fixed?
-- Describe at least one test you ran (manual or using pytest)  
-  and what it showed you about your code.
+  - To know a bug was really fixed, I restarted the application on the termination and tested it on the UI. I revisited the problem areas and verified whetever the bug was fixed or not.
+- Describe at least one test you ran (manual or using pytest)and what it showed you about your code.
+  - A test I performed checked a couple of items - I attempted to guess the secret and everytime the guess was submitted, I checked if the hint that was displayed was correct in comparison to the secret. Once the game was over, I checked if the Attempts left reach 0 for it to be game over.
 - Did AI help you design or understand any tests? How?
+  - Yes, AI did help me understand and design my tests. It helped me first understand the logic of the application and figuring out where the bug lays in the code if it was hidden. It guided me in correcting the incorrect logic for an item.
 
 ---
 
